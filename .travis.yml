@@ -15,7 +15,6 @@ sudo: false
 install:
  - pip install -U pip
  - pip install pyflakes
- - pip install coverage
  - pip install tensorflow
 
  # Make a smaller input file. Output won't look great, but runs much quicker.
@@ -24,17 +23,10 @@ install:
 
 script:
  - pyflakes .
- - coverage erase
- - coverage run --append --include=./* train.py --data_dir data/teenytinyshakespeare
- - coverage run --append --include=./* train.py --data_dir data/teenytinyshakespeare --init_from save
+ - python train.py --data_dir data/teenytinyshakespeare
  - python train.py --data_dir data/teenytinyshakespeare --init_from save
- - coverage run --append --include=./* sample.py
+ - python sample.py
 
 after_script:
  - pip install pep8
  - pep8 --statistics --count .
-
-after_success:
- - coverage report
- - pip install coveralls
- - coveralls
