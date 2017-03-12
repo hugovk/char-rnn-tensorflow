@@ -27,6 +27,7 @@ script:
  - coverage erase
  - coverage run --append --include=./* train.py --data_dir data/teenytinyshakespeare
  - coverage run --append --include=./* train.py --data_dir data/teenytinyshakespeare --init_from save
+ - python train.py --data_dir data/teenytinyshakespeare --init_from save
  - coverage run --append --include=./* sample.py
 
 after_script:
